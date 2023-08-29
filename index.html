@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <span id="seconds">0 s</span> <span id="miliSeconds">0 ms</span>
+    <button onclick="cickHandleStart()">Start</button>
+    <button onclick="cickHandleStop()">Stop</button>
+    <button onclick="cickHandlereset()">Reset</button>
+  </body>
+</html>
+<script>
+  let seconds = 0;
+  let miliSeconds = 0;
+  let intervalId;
+  const secondsElm = document.getElementById("seconds");
+  const miliSecondsElm = document.getElementById("miliSeconds");
+  const cickHandleStart = () => {
+    intervalId = setInterval(() => {
+      secondsElm.innerHTML = `${seconds} s`;
+      miliSecondsElm.innerHTML = `${miliSeconds} ms`;
+
+      if (miliSeconds >= 99) {
+        seconds += 1;
+        miliSeconds = 0;
+      }
+      miliSeconds += 1;
+    }, 10);
+  };
+
+  const cickHandleStop = () => {
+    clearInterval(intervalId);
+  };
+  const cickHandlereset = () => {
+    clearInterval(id);
+    seconds = 0;
+    miliSeconds = 0;
+    secondsElm.innerHTML = `${seconds} s`;
+    miliSecondsElm.innerHTML = `${miliSeconds} ms`;
+  };
+</script>
